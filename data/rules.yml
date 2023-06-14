@@ -11,7 +11,7 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
-
+  
 - rule: Activate Pizza Form
   steps:
   - intent: buy_pizza
