@@ -8,6 +8,33 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+# pizza form
+  - buy_pizza
+  - inform
+
+entities:
+  - pizza_size
+  - pizza_type
+
+slots:
+  pizza_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_size
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_type
+
+forms:
+  simple_pizza_form:
+    required_slots:
+      - pizza_size
+      - pizza_type
 
 responses:
   utter_greet:
@@ -29,6 +56,19 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
+  utter_ask_pizza_size:
+  - text: "What size would you like your pizza to be?"
+
+  utter_ask_pizza_type:
+  - text: "What kind of pizza would you like to buy?"
+
+  utter_submit:
+  - text: "I will now order a pizza for you"
+  utter_pizza_slots:
+  - text: "I will order a {pizza_size} {pizza_type} pizza"
+
+actions:
+  - validate_simple_pizza_form
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
